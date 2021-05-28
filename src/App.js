@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button } from './components/Button';
+import { Card } from './components/Card';
+import { Checkbox } from './components/Checkbox';
+import { Header } from './components/Header';
+import { Todo } from './components/Todo';
+import { TodoItem } from './components/TodoItem';
+import { AddTodo } from './components/AddTodo';
+
+import * as S from './styles';
+import { useState } from 'react';
 
 function App() {
+  const [todoItems, setTodoItems] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <S.Container>
+      <Header title="Simple Todo" />
+      <AddTodo addTodo={setTodoItems} />
+      <Todo>
+        {todoItems.map((todo) => (
+          <TodoItem label={todo} />
+        ))}
+      </Todo>
+    </S.Container>
   );
 }
 
 export default App;
+
+// yarn create react-app nome-do-app
